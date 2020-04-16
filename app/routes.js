@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {NavigationContainer} from '@react-navigation/native';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -34,14 +34,43 @@ function MenuStack() {
   );
 }
 
+const screenOptions = ({route}) => ({
+  tabBarIcon: () => {
+    return <Icon name="shopping-cart" />;
+  },
+});
+
+const tabBarOptions = {
+  activeTintColor: '#000',
+  inactiveTintColor: '#939596',
+};
+
 export default function Nav() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Menu" component={MenuStack} />
-        <Tab.Screen name="Profile" component={Profile} />
-        <Tab.Screen name="Contact" component={Contact} />
-        <Tab.Screen name="Basket" component={Basket} />
+      <Tab.Navigator
+        screenOptions={screenOptions}
+        tabBarOptions={tabBarOptions}>
+        <Tab.Screen
+          name="Menu"
+          options={{tabBarLabel: 'Меню'}}
+          component={MenuStack}
+        />
+        <Tab.Screen
+          name="Profile"
+          options={{tabBarLabel: 'Профиль'}}
+          component={Profile}
+        />
+        <Tab.Screen
+          name="Contact"
+          options={{tabBarLabel: 'Контакты'}}
+          component={Contact}
+        />
+        <Tab.Screen
+          name="Basket"
+          options={{tabBarLabel: 'Корзина'}}
+          component={Basket}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
